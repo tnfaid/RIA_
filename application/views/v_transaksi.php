@@ -1,26 +1,36 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>TRANSAKSI</title>
+<?php include 'admin/header.php'; ?>
+<?php include 'admin/aside.php'; ?>
 
-<link rel="stylesheet" href="<?php echo base_url() ?>/assets/css/bootstrap.min.css">
+
 <link rel="stylesheet" href="<?php echo base_url() ?>/assets/jquery-ui/jquery-ui.min.css">
 <link rel="stylesheet" href="<?php echo base_url() ?>/assets/jquery-ui/jquery-ui.theme.min.css">
 <link rel="stylesheet" href="<?php echo base_url() ?>/assets/DataTables/datatables.min.css"/>
- 
 
 <script type="text/javascript" src="<?php echo base_url() ?>/assets/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>/assets/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>/assets/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>/assets/DataTables/datatables.min.js"></script>
-
+ 
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Transaksi
+        <small>Penjualan</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
+        <li class="active">Transaksi</li>
+      </ol>
+    </section>
 <script type="text/javascript">
 	$(document).ready(function(){
 		/*$("#kode_pelanggan").change(function(){
 			//ambil kode
 			var kode_pelanggan = $("#kode_pelanggan").val();
 			$.ajax({
-				url: "<?php echo site_url('ctrl_transaksi/kodePel_lookup') ?>",
+				url: "<?php echo site_url('transaksi/kodePel_lookup') ?>",
 				data: {kode_pelanggan: $("#kode_pelanggan").val(), term:$("#kode_pelanggan").val()},
 				type: "get",
 				cache: false,
@@ -36,13 +46,13 @@
 		}); */
 
 		$("#kode_pelanggan").autocomplete({
-			source:"<?php echo site_url('ctrl_transaksi/kodePel_lookup') ?>",
+			source:"<?php echo site_url('transaksi/kodePel_lookup') ?>",
 			minLength: 1,
 			select:function(event,ui){
 				$("#kode_pelanggan").val(ui.item.id);
 				var term = $("#kode_pelanggan").val();
 				$.ajax({
-					url: "<?php echo site_url('ctrl_transaksi/pel_by_id') ?>",
+					url: "<?php echo site_url('transaksi/pel_by_id') ?>",
 					data: {term:$("#kode_pelanggan").val()},
 					type: "post",
 					dataType:"JSON",
@@ -58,13 +68,13 @@
 		});
 
 		$("#kode_barang").autocomplete({
-			source:"<?php echo site_url('ctrl_transaksi/kodeBar_lookup') ?>",
+			source:"<?php echo site_url('transaksi/kodeBar_lookup') ?>",
 			minLength: 1,
 			select:function(event,ui){
 				$("#kode_barang").val(ui.item.id);
 				var term = $("#kode_barang").val();
 				$.ajax({
-					url: "<?php echo site_url('ctrl_transaksi/bar_by_id') ?>",
+					url: "<?php echo site_url('transaksi/bar_by_id') ?>",
 					data: {term:$("#kode_barang").val()},
 					type: "post",
 					dataType:"JSON",
@@ -81,7 +91,7 @@
 
 //mencari autocomplete propinsi
 		$("#propinsi").autocomplete({
-			source:"<?php echo site_url('ctrl_transaksi/propinsi_lookup') ?>",
+			source:"<?php echo site_url('transaksi/propinsi_lookup') ?>",
 			minLength: 1,
 			select:function(event,ui){
 				$("#id_prov").val(ui.item.id);
@@ -93,7 +103,7 @@
 			minLength: 1,
 			source: function(request,response){
 				$.ajax({
-					url:"<?php echo site_url('ctrl_transaksi/kabkot_lookup') ?>",
+					url:"<?php echo site_url('transaksi/kabkot_lookup') ?>",
 					dataType:'json',
 					type:'POST',
 					data: {id_prov: $("#id_prov").val(), term:$("#kabkot").val()},
@@ -115,7 +125,7 @@
 	function save()
 		{
 			$.ajax({
-				url: "<?php echo site_url('ctrl_transaksi/barang_add') ?>",
+				url: "<?php echo site_url('transaksi/barang_add') ?>",
 				type: 'POST',
 				dataType: 'JSON',
 				data: $("#form_barang").serialize(),
@@ -134,7 +144,7 @@
 			if(confirm('Are you sure ? '))
 			{
 				$.ajax({
-					url: "<?php echo site_url('ctrl_transaksi/barang_delete') ?>",
+					url: "<?php echo site_url('transaksi/barang_delete') ?>",
 					data: {id :id},
 					type: "POST",
 					dataType: "JSON",
@@ -152,88 +162,61 @@
 </script>
 </head>
 <body>
-
+	   
 <div class="container">
-	<p>
-	<h3><b><font color="red">Transaksi Penjualan</font></b></h3>
-	<h6>Toko Komputer "Saturnus"</h6>
-	<h6>Jalan Kaliurang 56 Malang</h6>
-	</p>
-	<hr>
+	<!-- form start -->
+    <form role="form">
+      <div class="box-body">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-barcode"></i></span>
+            <input type="text" class="form-control" name="kode_pelanggan" id="kode_pelanggan" placeholder="input kode pelanggan">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
+            <input type="text" class="form-control" name="nama" id="nama" readonly="readonly" placeholder="nama">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-phone"> </i></span>
+            <input type="text" class="form-control" name="telp" id="telp" readonly="readonly" placeholder="nomor telepon">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">@</span>
+            <input type="text" class="form-control" name="email" id="email" readonly="readonly" placeholder="Email">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-home"> </i></span>
+            <input type="text" class="form-control" name="alamat" id="alamat" readonly="readonly" placeholder="Alamat">
+        </div>
+      </div>
+      <hr>
+      <hr>
+    <!-- /.box-body -->
+    	<form id="form_barang">
+	    	<div class="form row">
+	    	<div class="col-xs-3">
+	    		<input type="text" id="kode_barang" class="form-control" placeholder="Kode Barang" >
+	    		<br>
+	    		<input type="text" name="nama_barang" id="nama_barang" class="form-control" readonly="readonly" placeholder="Nama Barang">
+	    	</div>
 
-				
-					<form>
-						<div class="form row">
-							<div class="form-group col-md-2">
-								<p>
-								Kode Pelanggan:<br>
-								<input type="text" name="kode_pelanggan" id="kode_pelanggan" class="form-control">	
-								</p>
-							</div>
-							
-						</div>
+	    	<div class="col-xs-3">
+	    		<input type="text" id="jumlah" name="jumlah" class="form-control" placeholder="Jumlah Barang" >
+	    		<br>
+	    		<input type="text" name="harga_jual" id="harga_jual" class="form-control" readonly="readonly" placeholder="Nama Barang">
+	    	</div>
 
-						<div class="form row">
-							<div class="form-group col-md-8">
-								<p>Nama</p>
-								<input type="text" name="nama" id="nama" class="form-control" readonly="readonly">	
-							</div>
-						</div>
-
-						<div class="form row">
-							<div class="form-group col-md-8">
-								<p>No Telpon</p>
-								<input type="text" name="telp" id="telp" class="form-control" readonly="readonly">	
-							</div>
-						</div>
-
-						<div class="form row">
-							<div class="form-group col-md-8">
-								<p>Email</p>
-								<input type="text" name="email" id="email" class="form-control"  readonly="readonly">	
-							</div>
-						</div>
- 
-						<p>Alamat</p>
-						<div class="form-group">
-							<input type="text" name="alamat" id="alamat" class="form-control"  readonly="readonly">
-						</div>
-					</form>
-					<!-- -->
-					<form id="form_barang">
-						<div class="form row">
-							<div class="form-group col-md-2">
-								<p>
-								Kode Barang:<br>
-								<input type="text" name="kode_barang" id="kode_barang" class="form-control">	
-								</p>
-							</div>
-							
-							<div class="form-group col-md-5">
-								<p>
-								Nama Barang:<br>
-								<input type="text" name="nama_barang" id="nama_barang" class="form-control" readonly="readonly">	
-								</p>
-							</div>
-
-							<div class="form-group col-md-1">
-								<p>
-								Jumlah:<br>
-								<input type="text" name="jumlah" id="jumlah" class="form-control" >	
-								</p>
-							</div>
-
-							<div class="form-group col-md-2">
-								<p>
-								Harga:<br>
-								<input type="text" name="harga_jual" id="harga_jual" class="form-control" readonly="readonly">	
-								</p>
-							</div>
-							
-							<button class="btn btn-success" id="btn_save" onclick="save()">Tambah</button>
-					</div>
-					</form>
-				<br>
+	    	<div class="col-xs-4">
+	    		<button class="btn btn-success" id="btn_save" onclick="save()">Tambah</button>
+	    	</div>
+	    		
+	    	</div> 	
+	    </form>
+					
+		<hr><hr>
 
 <table id="table_barang" class="table table-bordered table-striped table-sm">
 	<thead>

@@ -34,7 +34,7 @@
             </span>
           </a>
           <ul class="treeview-menu"> 
-            <li><a href="<?php echo base_url('index.php/ctrl_transaksi/home') ?>"><i class="fa fa-circle-o"></i> Transaksi</a></li>
+            <li><a href="<?php echo base_url('index.php/transaksi/') ?>"><i class="fa fa-circle-o"></i> Transaksi</a></li>
           </ul>
         </li>
       </ul>

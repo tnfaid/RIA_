@@ -14,7 +14,7 @@
       <div class="pen-title" style="padding-top: 100px">
       </div>
       <!-- Form Module-->
-      <form action='<?php echo base_url(); ?>index.php/ctrl_transaksi' method='post'>
+      <form action='<?php echo base_url(); ?>index.php/transaksi' method='post'>
       <div class="module form-module" >
         <?php
         if($this->session->has_userdata('salah_login')){?>

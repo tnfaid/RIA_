@@ -1,19 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class ctrl_transaksi extends CI_Controller {
-	
+class transaksi extends CI_Controller {
+
 	public function __construct()
 	{
 	parent::__construct();
 	$this->load->model('mpsb');
 	}
-	
+
 	public function index()
 	{
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
-
 		$this->form_validation->set_rules('username','Username','required');
 		$this->form_validation->set_rules('password','Password','required');
 		if($this->form_validation->run() == TRUE)
@@ -26,18 +25,18 @@ class ctrl_transaksi extends CI_Controller {
 				$this->session->set_userdata('username', $row->username);
 				$this->session->set_userdata('realname', $row->nama_lengkap);
 				$this->session->set_userdata('sudah_login', TRUE);
-				redirect('ctrl_transaksi/home');
+				redirect('transaksi/home');
 			}else{
 				$this->session->set_flashdata('salah_login', 'Username atau Password yang dimasukkan salah.');
 			}
 		}
-		$this->load->view('login');
+		$this->load->view('v_login');
 		
 	}
 
 	public function home(){
 		$data['tb_jual_detil'] = $this->mpsb->barang_all();
-		$this->load->view('transaksi',$data);
+		$this->load->view('v_transaksi',$data);
 	}
 
 	public function kodePel_lookup()
@@ -51,7 +50,6 @@ class ctrl_transaksi extends CI_Controller {
 		}
 		echo json_encode($data_kodePel);
 	}
-
 	public function kodeBar_lookup()
 	{
 		$keyword = (isset($_GET['term'])?$_GET['term'] : '');
@@ -63,7 +61,6 @@ class ctrl_transaksi extends CI_Controller {
 		}
 		echo json_encode($data_kodeBar);
 	}
-
 	public function	pel_by_id()
 	{
 		$kd = $this->input->post('term');
@@ -71,7 +68,6 @@ class ctrl_transaksi extends CI_Controller {
 		$pel = $query->row();
 		echo json_encode($pel);
 	}
-
 	public function	bar_by_id()
 	{
 		$kd = $this->input->post('term');
@@ -79,7 +75,6 @@ class ctrl_transaksi extends CI_Controller {
 		$bar = $query->row();
 		echo json_encode($bar);
 	}
-
 	public function tambah_barang()
 	{
 		$data['kode_barang'] = $this->input->post('kode_barang');
@@ -98,7 +93,7 @@ class ctrl_transaksi extends CI_Controller {
 				'jumlah'=>$data['jumlah'],
 				);
 			$this->mpsb->barang_add($data_barang);
-		redirect('transaksi_controller/home');
+		redirect('transaksi/home');
 		}
 		else{
 			$data['submit'] = FALSE;
@@ -106,7 +101,5 @@ class ctrl_transaksi extends CI_Controller {
 		$this->load->view('transaksi',$data);
 		
 	}
-
-	
 }
 ?>
