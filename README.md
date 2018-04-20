@@ -13,11 +13,29 @@ localhost/UAS/index.php/transaksi_controller
 
 yang ingin dicapai
 ```
-1. jika diberikan unput kode pelanggan PL001 secara otomatis keluar nama pelanggan, nomor telepon, alamat email, dan alamat pelanggan yang sesuai
+1. input kode pelanggan, langsung keluar nama dll
 
-2.operator memiliki akun yang sudah didaftarkan , dan harus login terlebih dahulu ketika membuka app 
+2. operator harus login
 
-3.keseluruahn data transaksi penjualan yang telah terjadi juga dapat ditampilkan pada halaman data transaksi
+3. terdapat nomor faktur
+
+4. terdapat tanggal
+
+5. penambahan barang yang dibeli dapat ditampilkan dapat dikali dengan jumlah
+
+6. barang yang di beli dapat ditambahkan dan dihapus
+
+7. muncul total
+
+8. muncul jumlah pembayaran
+
+9. muncul kembalian
+
+10. muncul nama operator yang menangani transaksi juga
+
+11. transaksi disimpan, dapat diekspor juga dalam bentuk pdf
+
+
 
 ```
 
