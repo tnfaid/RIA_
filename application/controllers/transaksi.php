@@ -75,6 +75,7 @@ class transaksi extends CI_Controller {
 		$bar = $query->row();
 		echo json_encode($bar);
 	}
+
 	public function tambah_barang()
 	{
 		$data['kode_barang'] = $this->input->post('kode_barang');
@@ -100,6 +101,40 @@ class transaksi extends CI_Controller {
 		}
 		$this->load->view('transaksi',$data);
 		
+	}
+
+	function shopping_cart(){
+		$this->load->library("cart");
+		$data = array(
+			"id" => $_POST['id'],
+			"kd_jual" => $_POST['kode_jual'],
+			"kd_brg" => $_POST['kode_barang'],
+			"hrg" => $_POST['harga_jual'],
+			"jml" => $_POST['jml']
+		);
+		$this->cart->insert($data); //return to row id
+		echo $this->view();
+	}
+
+	function load(){
+		echo $this->view();
+	}
+
+	function removve(){
+		$this->load->library("cart");
+		$row_id = $_POST["row_id"];
+		$data = array(
+			'rowid' => $row_id,
+			'qty' => 0
+		);
+		$this->cart->update($data);
+		echo $this->view();
+	}
+
+	function clear(){
+		$this->load->library("cart");
+		$this->cart->destroy();
+		echo $this->view();
 	}
 }
 ?>

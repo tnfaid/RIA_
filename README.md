@@ -13,9 +13,9 @@ localhost/UAS/index.php/transaksi_controller
 
 yang ingin dicapai
 ```
-1. input kode pelanggan, langsung keluar nama dll
+1. input kode pelanggan, langsung keluar nama dll (done)
 
-2. operator harus login
+2. operator harus login (done)
 
 3. terdapat nomor faktur
 

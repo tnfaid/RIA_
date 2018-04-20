@@ -88,36 +88,6 @@
 		});
 
 
-
-//mencari autocomplete propinsi
-		$("#propinsi").autocomplete({
-			source:"<?php echo site_url('transaksi/propinsi_lookup') ?>",
-			minLength: 1,
-			select:function(event,ui){
-				$("#id_prov").val(ui.item.id);
-			}
-		});
-
-//mencari autocomplete kabupaten/kota
-		$("#kabkot").autocomplete({
-			minLength: 1,
-			source: function(request,response){
-				$.ajax({
-					url:"<?php echo site_url('transaksi/kabkot_lookup') ?>",
-					dataType:'json',
-					type:'POST',
-					data: {id_prov: $("#id_prov").val(), term:$("#kabkot").val()},
-					success:function(msg)
-					{
-						response(msg);
-					}
-				});
-			},
-			select:function(event,ui){
-				$("#id_kabkot").val(ui.item.id);
-			}
-		});
-
 		$('#table_barang').DataTable();
 
 	});
@@ -198,21 +168,42 @@
     	<form id="form_barang">
 	    	<div class="form row">
 	    	<div class="col-xs-3">
-	    		<input type="text" id="kode_barang" class="form-control" placeholder="Kode Barang" >
+	    		<input type="text" id="kode_barang" class="form-control input-lg" placeholder="Kode Barang" >
 	    		<br>
-	    		<input type="text" name="nama_barang" id="nama_barang" class="form-control" readonly="readonly" placeholder="Nama Barang">
+	    		<br>
+	    		<input type="text" name="nama_barang" id="nama_barang" class="form-control input-lg" readonly="readonly" placeholder="Nama Barang">
 	    	</div>
 
 	    	<div class="col-xs-3">
-	    		<input type="text" id="jumlah" name="jumlah" class="form-control" placeholder="Jumlah Barang" >
+	    		<input type="text" id="jumlah" name="jumlah" class="form-control input-lg" placeholder="Jumlah Barang" >
 	    		<br>
-	    		<input type="text" name="harga_jual" id="harga_jual" class="form-control" readonly="readonly" placeholder="Nama Barang">
+	    		<br>
+	    		<input type="text" name="harga_jual" id="harga_jual" class="form-control input-lg" readonly="readonly" placeholder="Nama Barang">
 	    	</div>
 
-	    	<div class="col-xs-4">
-	    		<button class="btn btn-success" id="btn_save" onclick="save()">Tambah</button>
+	    	<div class="col-xs-3">
+	    		<input type="text" name="total" id="total" class="form-control input-lg" readonly="readonly" placeholder="Total">
+	    		<br>
+	    		<br>
+	    		<button class="btn btn-success form-control input-lg" id="btn_save" onclick="save()">Tambah</button>
 	    	</div>
-	    		
+
+	    	<div class="col-lg-3 col-xs-6">
+	          <!-- small box -->
+	          <div class="small-box bg-aqua">
+	            <div class="inner">
+	              <h3>150</h3>
+
+	              <p>New Orders</p>
+	            </div>
+	            <div class="icon">
+	              <i class="fa fa-shopping-cart"></i>
+	            </div>
+	            <a href="#" class="small-box-footer">
+	              More info <i class="fa fa-arrow-circle-right"></i>
+	            </a>
+	          </div>
+	        </div>
 	    	</div> 	
 	    </form>
 					

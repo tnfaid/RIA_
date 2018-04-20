@@ -3,6 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
  class mpsb extends CI_Model
  {
+
+ 	function fetch_all()
+	{
+	  $query = $this->db->get("product");
+	  return $query->result();
+	}
+
+
  	public function barang_all()
  	{	
 		$this->db->select('tb_jual_detil.*,tb_barang.*'); 	
