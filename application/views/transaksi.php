@@ -20,7 +20,7 @@
 			//ambil kode
 			var kode_pelanggan = $("#kode_pelanggan").val();
 			$.ajax({
-				url: "<?php echo site_url('service/kodePel_lookup') ?>",
+				url: "<?php echo site_url('ctrl_transaksi/kodePel_lookup') ?>",
 				data: {kode_pelanggan: $("#kode_pelanggan").val(), term:$("#kode_pelanggan").val()},
 				type: "get",
 				cache: false,
@@ -36,13 +36,13 @@
 		}); */
 
 		$("#kode_pelanggan").autocomplete({
-			source:"<?php echo site_url('service/kodePel_lookup') ?>",
+			source:"<?php echo site_url('ctrl_transaksi/kodePel_lookup') ?>",
 			minLength: 1,
 			select:function(event,ui){
 				$("#kode_pelanggan").val(ui.item.id);
 				var term = $("#kode_pelanggan").val();
 				$.ajax({
-					url: "<?php echo site_url('service/pel_by_id') ?>",
+					url: "<?php echo site_url('ctrl_transaksi/pel_by_id') ?>",
 					data: {term:$("#kode_pelanggan").val()},
 					type: "post",
 					dataType:"JSON",
@@ -58,13 +58,13 @@
 		});
 
 		$("#kode_barang").autocomplete({
-			source:"<?php echo site_url('service/kodeBar_lookup') ?>",
+			source:"<?php echo site_url('ctrl_transaksi/kodeBar_lookup') ?>",
 			minLength: 1,
 			select:function(event,ui){
 				$("#kode_barang").val(ui.item.id);
 				var term = $("#kode_barang").val();
 				$.ajax({
-					url: "<?php echo site_url('service/bar_by_id') ?>",
+					url: "<?php echo site_url('ctrl_transaksi/bar_by_id') ?>",
 					data: {term:$("#kode_barang").val()},
 					type: "post",
 					dataType:"JSON",
@@ -81,7 +81,7 @@
 
 //mencari autocomplete propinsi
 		$("#propinsi").autocomplete({
-			source:"<?php echo site_url('service/propinsi_lookup') ?>",
+			source:"<?php echo site_url('ctrl_transaksi/propinsi_lookup') ?>",
 			minLength: 1,
 			select:function(event,ui){
 				$("#id_prov").val(ui.item.id);
@@ -93,7 +93,7 @@
 			minLength: 1,
 			source: function(request,response){
 				$.ajax({
-					url:"<?php echo site_url('service/kabkot_lookup') ?>",
+					url:"<?php echo site_url('ctrl_transaksi/kabkot_lookup') ?>",
 					dataType:'json',
 					type:'POST',
 					data: {id_prov: $("#id_prov").val(), term:$("#kabkot").val()},
@@ -115,7 +115,7 @@
 	function save()
 		{
 			$.ajax({
-				url: "<?php echo site_url('service/barang_add') ?>",
+				url: "<?php echo site_url('ctrl_transaksi/barang_add') ?>",
 				type: 'POST',
 				dataType: 'JSON',
 				data: $("#form_barang").serialize(),
@@ -134,7 +134,7 @@
 			if(confirm('Are you sure ? '))
 			{
 				$.ajax({
-					url: "<?php echo site_url('service/barang_delete') ?>",
+					url: "<?php echo site_url('ctrl_transaksi/barang_delete') ?>",
 					data: {id :id},
 					type: "POST",
 					dataType: "JSON",

@@ -15,7 +15,7 @@
 
 </nav>
 <center>
-<form class="form-signin" action='<?php echo base_url(); ?>index.php/transaksi_controller/index' method='post'>
+<form class="form-signin" action='<?php echo base_url(); ?>index.php/ctrl_transaksi' method='post'>
 <div class="container">
 
 <?php

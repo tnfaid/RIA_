@@ -55,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  	public function logout()
  	{
  		$this->session->session_destroy();
- 		redirect('transaksi_controller/index');
+ 		redirect('ctrl_transaksi/index');
  	}
 
  	public function barang_delete($id)
